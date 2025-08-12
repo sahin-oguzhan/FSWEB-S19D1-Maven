@@ -1,5 +1,6 @@
 package com.workintech.s18d2.controller;
 
+import com.workintech.s18d2.dto.FruitResponseRecord;
 import com.workintech.s18d2.entity.Fruit;
 import com.workintech.s18d2.services.FruitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,9 @@ public class FruitController {
     }
 
     @GetMapping("/{id}")
-    public Fruit findById(@PathVariable Long id){
-        return fruitService.getById(id);
+    public FruitResponseRecord findById(@PathVariable Long id){
+        Fruit fruit = fruitService.getById(id);
+        return new FruitResponseRecord(fruit, "Request successful!");
     }
 
     @GetMapping("/desc")
